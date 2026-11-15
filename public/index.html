@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Girdwood's second gas line: what's proposed and what's known</title>
+<meta name="description" content="A plain-language summary, timeline and FAQ about Enstar's proposed second natural gas line to Girdwood and HLB Resolution 2026-11.">
+<style>
+:root{
+  --ink:#1d2327; --muted:#5b6670; --line:#d9dee2; --bg:#fbfaf7; --card:#fff;
+  --enstar:#d9480f; --state:#1c7ed6; --girdwood:#2b8a3e; --hlb:#7048e8; --event:#495057;
+  --accent:#0b7285;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+header.hero{background:linear-gradient(160deg,#0b3d2e,#14532d 55%,#1f6f43);color:#fff;padding:42px 0 34px}
+header.hero h1{font-size:1.75rem;line-height:1.2;margin:0 0 10px}
+header.hero p{margin:0;opacity:.92}
+.updated{font-size:.85rem;opacity:.8;margin-top:12px!important}
+nav.toc{position:sticky;top:0;z-index:5;background:rgba(251,250,247,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:16px;overflow-x:auto;white-space:nowrap;padding-top:10px;padding-bottom:10px;font-size:.92rem}
+nav.toc a{text-decoration:none;color:var(--ink);font-weight:600}
+section{padding:30px 0 8px;scroll-margin-top:44px}
+h2{font-size:1.35rem;margin:0 0 14px}
+h3{font-size:1.05rem;margin:0}
+.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;margin:16px 0}
+.callout.warn{border-left-color:#e67700}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.fact b{display:block;font-size:1.3rem;line-height:1.2}
+.fact span{font-size:.85rem;color:var(--muted)}
+@media(min-width:640px){.facts{grid-template-columns:repeat(4,1fr)}}
+
+/* timeline */
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:.85rem;color:var(--muted);margin-bottom:12px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+ol.tl{list-style:none;margin:0;padding:0 0 0 26px;position:relative}
+ol.tl:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:3px;background:var(--line);border-radius:2px}
+ol.tl li{position:relative;margin:0 0 16px}
+ol.tl li:before{content:"";position:absolute;left:-24px;top:16px;width:15px;height:15px;border-radius:50%;background:var(--c,var(--event));border:3px solid var(--bg);box-shadow:0 0 0 2px var(--c,var(--event))}
+.tl .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;border-top:4px solid var(--c,var(--event))}
+.tl time{display:block;font-size:.8rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--c,var(--event))}
+.tl p{margin:6px 0 0;font-size:.95rem}
+.tl .who{font-size:.75rem;color:var(--muted);float:right;margin-left:8px}
+.tl .big{font-size:1.02rem;font-weight:700;margin-top:2px}
+.tl li.future .card{border-style:dashed;background:#fffdf5}
+.tl li.era{margin:22px 0 14px}
+.tl li.era:before{display:none}
+.tl li.era span{display:inline-block;background:var(--ink);color:#fff;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-left:-26px}
+.enstar{--c:var(--enstar)} .state{--c:var(--state)} .girdwood{--c:var(--girdwood)} .hlb{--c:var(--hlb)} .event{--c:var(--event)}
+
+/* faq */
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:0 14px}
+details[open]{padding-bottom:10px}
+summary{cursor:pointer;font-weight:700;padding:13px 0;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";float:right;font-weight:400;color:var(--muted)}
+details[open] summary:after{content:"–"}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border-radius:4px;padding:1px 6px;margin-right:4px;vertical-align:1px}
+.t-known{background:#d3f9d8;color:#2b8a3e}
+.t-est{background:#fff3bf;color:#8a6100}
+.t-unk{background:#ffe3e3;color:#c92a2a}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:10px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f1f3f5}
+.scroll{overflow-x:auto}
+.math{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85rem;background:#f1f3f5;border-radius:6px;padding:8px 10px;overflow-x:auto;white-space:pre}
+sup a{text-decoration:none;font-size:.75em}
+ol.src{padding-left:22px;font-size:.9rem}
+ol.src li{margin:0 0 8px;word-break:break-word}
+.arch{font-size:.8rem;color:var(--muted)}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Girdwood's second gas line</h1>
+    <p>Enstar wants to build a backup natural gas line into Girdwood through the forest near Virgin Creek. The Heritage Land Bank Advisory Commission holds a public hearing on part of the route on <b>Thursday, November 19, 2026</b>. Here is what is known, with sources.</p>
+    <p class="updated">Compiled November 15, 2026 by a Girdwood resident from public records. Not affiliated with Enstar, the Municipality or the State.</p>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#summary">Summary</a><a href="#timeline">Timeline</a><a href="#faq">FAQ</a><a href="#limits">Limitations</a><a href="#sources">Sources</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p>Almost all of Girdwood's gas comes through one 6-inch plastic main that runs from Enstar's regulator station on Ruane Road up the Alyeska Highway.<sup><a href="#s3">3</a></sup> If that main is cut, everyone downstream of the break loses gas. Enstar wants to add a second, 4-inch line from the end of Ruane Road, under Glacier Creek, to Virgin Creek Road, so gas can reach the valley from both ends (a "two-way feed").<sup><a href="#s5">5</a>,<a href="#s9">9</a></sup></p>
+  <p>Enstar first planned to build the whole line inside a state section-line easement that runs east–west across Heritage Land Bank land. The plan was 4,850 feet of 4-inch pipe: 1,650 feet drilled underground (mostly a 1,500-foot bore under Glacier Creek and its wetlands), and 3,350 feet in a trench, in a 20-foot-wide strip cleared west from the end of Virgin Creek Road.<sup><a href="#s25">25</a></sup> The cleared strip would cross the Lower Virgin Creek and Joe Danich trails through old-growth forest.<sup><a href="#s4">4</a>,<a href="#s29">29</a></sup> Residents and the Girdwood Board of Supervisors (GBOS) objected in 2023. The state Department of Natural Resources (DNR) issued a letter of non-objection in August 2024, and neighbors appealed.<sup><a href="#s29">29</a>,<a href="#s8">8</a></sup></p>
+  <figure style="margin:16px 0">
+    <a href="sources/img/dnr-route-map.jpg"><img src="sources/img/dnr-route-map.jpg" alt="DNR map of the proposed gas line along the section-line easement from Ruane Road east across Glacier Creek to Virgin Creek Road" style="width:100%;border-radius:8px;border:1px solid var(--line)"></a>
+    <figcaption style="font-size:.82rem;color:var(--muted)">DNR's 2023 public-notice map. Purple: the section-line easement. Orange and red: the proposed line. Blue dots: tie-ins to Enstar's existing mains, at Ruane Road (west) and Virgin Creek Road (east).<sup><a href="#s26">26</a></sup> Enstar's drawings show the line tying into the 6-inch main at the west end and a 2-inch main at the east end.<sup><a href="#s25">25</a></sup></figcaption>
+  </figure>
+  <p>The new item is <b>HLB Resolution 2026-11</b>. It would grant Enstar a permanent, non-exclusive gas easement plus a temporary construction easement on part of Heritage Land Bank Parcel 6-062 (Tract 20-A). The easement is 20 feet wide and about 1,000 feet long, between the section-line easement and Virgin Creek Road. HLB describes it as an alternative to placing the project in the state-managed section-line easement.<sup><a href="#s1">1</a></sup> Without the staff report, I can't tell exactly which stretch it replaces. The 2023 plan had to leave the section line at the east end to reach the tie-in on Virgin Creek Road (the red dashed segment on the map below), and this easement is probably related to that connection. That is my inference.</p>
+
+  <div class="facts">
+    <div class="fact"><b>1,615</b><span>Enstar gas meters in Girdwood (2023)<sup><a href="#s3">3</a></sup></span></div>
+    <div class="fact"><b>1</b><span>main feeding the valley today<sup><a href="#s3">3</a></sup></span></div>
+    <div class="fact"><b>4–7 days</b><span>Enstar's estimate to restore service after a full outage<sup><a href="#s3">3</a></sup></span></div>
+    <div class="fact"><b>20 ft × ~1,000 ft</b><span>HLB easement now proposed (about 0.46 acre)<sup><a href="#s1">1</a></sup></span></div>
+  </div>
+
+  <div class="callout">
+    <b>How to weigh in:</b> HLBAC hearing, Thu Nov 19, 2026, 1:30 pm, Permit &amp; Development Center, 4700 Elmore Rd, or on Teams (link at muni.org/hlb), or by phone at (907) 519-0237, conference ID 987 366 530#. To testify by phone or Teams, or to send written comments, email HLB@anchorageak.gov by 5 pm on Wed Nov 18 with your name, phone and the agenda item. In-person testifiers don't need to sign up.<sup><a href="#s1">1</a></sup> HLBAC only makes a recommendation. Disposals of HLB land, easements included, go on to the Mayor and Assembly.<sup><a href="#s15">15</a></sup>
+  </div>
+</section>
+
+<section id="timeline">
+  <h2>Timeline</h2>
+  <div class="legend"><span><i style="background:var(--enstar)"></i>Enstar</span><span><i style="background:var(--state)"></i>State (DNR)</span><span><i style="background:var(--girdwood)"></i>Girdwood boards and residents</span><span><i style="background:var(--hlb)"></i>Heritage Land Bank</span><span><i style="background:var(--event)"></i>Outages and events</span></div>
+  <ol class="tl">
+    <li class="era"><span>Background</span></li>
+    <li class="enstar"><div class="card"><time>1996</time><p class="big">Gas service reaches Girdwood</p><p>Through a single 6-inch main up the Alyeska Highway.<sup><a href="#s3">3</a></sup></p></div></li>
+    <li class="event"><div class="card"><time>August 2016</time><p class="big">Contractor hits the Girdwood main</p><p>A Granite Construction crew working on a DOT road project near 1127 Alyeska Hwy damaged the top of the 6-inch main. Pressure fell from over 50 psi to 5 psi. Service held thanks to low summer demand, Hotel Alyeska switching to backup fuel, and a quick bypass. Enstar says that otherwise about 1,000 homes and businesses would have lost gas.<sup><a href="#s3">3</a></sup></p></div></li>
+    <li class="event"><div class="card"><time>October 2021</time><p class="big">Ruane Road washes out</p><p>Heavy rain exposed a 2-inch main feeding the wastewater plant. It was cut out, replaced and bypassed.<sup><a href="#s3">3</a></sup></p></div></li>
+
+    <li class="era"><span>2023: the section-line plan</span></li>
+    <li class="state"><div class="card"><time>July 28, 1972</time><p class="big">Section-line easement created</p><p>50 feet on each side of the section line, on land that later became Heritage Land Bank property.<sup><a href="#s29">29</a></sup></p></div></li>
+    <li class="enstar"><div class="card"><time>May 4, 2023</time><p class="big">Enstar applies to DNR (ADL 234206)</p><p>To build 4,850 ft of 4-inch main within the section-line easement, with 3–4 weeks of construction planned for late July to early September 2023.<sup><a href="#s25">25</a>,<a href="#s29">29</a></sup> Enstar says HLB was notified in spring 2023.<sup><a href="#s27">27</a></sup> DNR treats this as a "courtesy" notice, not one required by law.<sup><a href="#s29">29</a></sup></p></div></li>
+    <li class="state"><div class="card"><time>July 6, 2023</time><p class="big">DNR public notice: 14 days to comment</p><p>Sent to HLB and four adjacent households. Some neighbors got it July 10. GBOS was never formally notified.<sup><a href="#s4">4</a>,<a href="#s23">23</a>,<a href="#s29">29</a></sup> Enstar planned to start clearing Aug 14.<sup><a href="#s27">27</a></sup></p></div></li>
+    <li class="girdwood"><div class="card"><time>July 17, 2023</time><p class="big">Enstar presents at GBOS. Board objects 4–0.</p><p>About 90 minutes of questions and public comment, mostly opposed. GBOS voted to object and to ask for a 30-day extension.<sup><a href="#s9">9</a>,<a href="#s28">28</a></sup> <a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=2589">Watch the presentation</a></p></div></li>
+    <li class="girdwood"><div class="card"><time>July 19, 2023</time><p class="big">GBOS letter of objection</p><p>Asks DNR to extend comment to Aug 21 and to deny the project because of the clearcut across community trails.<sup><a href="#s4">4</a></sup></p></div></li>
+    <li class="enstar"><div class="card"><time>August 3, 2023</time><p class="big">Comment period closes. Enstar replies.</p><p>On July 19, DNR extended the deadline to Aug 3 and posted notices in Girdwood. It received 27 comments in total.<sup><a href="#s24">24</a>,<a href="#s29">29</a></sup> On Aug 3, Enstar wrote to GBOS explaining the reliability case and saying "further review and dialogue" were warranted.<sup><a href="#s3">3</a></sup></p></div></li>
+
+    <li class="era"><span>2024: approval and appeal</span></li>
+    <li class="state"><div class="card"><time>August 26, 2024</time><p class="big">DNR: no objection</p><p>DNR concluded that a gas main is "an acceptable secondary use" of the section-line easement. It issued a letter of non-objection with no stipulations. Cost, alternative routes, viewsheds and gas supply were all ruled outside the decision's scope. DNR also noted that Enstar no longer expects to need to cross Virgin Creek.<sup><a href="#s29">29</a></sup></p></div></li>
+    <li class="girdwood"><div class="card"><time>September 9, 2024</time><p class="big">Land Use Committee backs an appeal</p><p>It also noted that Enstar hadn't answered requests to consider another alignment.<sup><a href="#s12">12</a></sup></p></div></li>
+    <li class="enstar"><div class="card"><time>September 9, 2024</time><p class="big">Enstar pauses</p><p>Enstar told GBOS it would make no final decision until the appeal process ended, and expected no construction in 2024.<sup><a href="#s30">30</a></sup></p></div></li>
+    <li class="girdwood"><div class="card"><time>September 13, 2024</time><p class="big">GBOS declines to back the appeal</p><p>A motion for GBOS to appeal itself failed 0–4 after staff said service-area money can't fund an appeal. A letter of concern to Enstar and a letter supporting the residents' appeal each failed 2–2.<sup><a href="#s10">10</a>,<a href="#s11">11</a></sup> <a href="https://open-minutes.nickcrews.workers.dev/meetings/31?t=3327">Watch the votes</a></p></div></li>
+    <li class="girdwood"><div class="card"><time>September 17, 2024</time><p class="big">Residents file appeal with DNR</p><p>Filed by Brendan Raymond-Yakoubian and two other residents.<sup><a href="#s8">8</a></sup></p></div></li>
+
+    <li class="era"><span>2025–2026</span></li>
+    <li class="state"><div class="card"><time>May 11, 2026</time><p class="big">Appeal still undecided</p><p>The Land Use Committee was told that DNR still hadn't responded to the neighbors' appeals, and it dropped the item from its pending list.<sup><a href="#s13">13</a></sup></p></div></li>
+    <li class="event"><div class="card"><time>August 9–23, 2026</time><p class="big">Whittier loses gas for a week</p><p>A submerged section of the single 8-inch line under the Twentymile River broke. Enstar shut off Whittier on Aug 16 and restored it by Aug 23 using trucked-in LNG. Enstar said the lack of redundancy there is one reason it has pursued the "Girdwood Reinforcement Pipeline."<sup><a href="#s16">16</a>,<a href="#s17">17</a>,<a href="#s18">18</a></sup></p></div></li>
+    <li class="hlb"><div class="card"><time>November 5, 2026</time><p class="big">HLB notice: Resolution 2026-11</p><p>Gas easement and temporary construction easement on HLB Parcel 6-062, about 1,000 ft long, between the section-line easement and Virgin Creek Road.<sup><a href="#s1">1</a></sup></p></div></li>
+    <li class="girdwood future"><div class="card"><time>Monday, November 16, 2026</time><p class="big">GBOS regular meeting</p><p>The packet includes HLB's notice. There is no GBOS agenda item of its own on this.<sup><a href="#s14">14</a></sup></p></div></li>
+    <li class="hlb future"><div class="card"><time>Thursday, November 19, 2026 · 1:30 pm</time><p class="big">HLBAC public hearing on Res. 2026-11</p><p>Written and remote testimony is due by email by 5 pm, Nov 18.<sup><a href="#s1">1</a>,<a href="#s2">2</a></sup></p></div></li>
+    <li class="hlb future"><div class="card"><time>After that</time><p class="big">Mayor and Assembly</p><p>HLBAC's recommendation goes to the Mayor and Assembly, which decide disposals of HLB land.<sup><a href="#s15">15</a></sup></p></div></li>
+  </ol>
+</section>
+
+<section id="faq">
+  <h2>Questions and answers</h2>
+  <p style="font-size:.9rem;color:var(--muted)">Each answer is labeled by how solid it is: <span class="tag t-known">Documented</span> means a public record says so. <span class="tag t-est">Estimate</span> is my own rough arithmetic from those records. <span class="tag t-unk">Not public</span> means I couldn't find the answer, and it is a good question to ask on Nov 19.</p>
+
+  <details open>
+    <summary>What is the line for? Is it only redundancy?</summary>
+    <p><span class="tag t-known">Documented</span> Enstar's stated purpose is reliability. Adding a second feed means that a break on the existing main doesn't cut off everyone downstream. Enstar calls Girdwood "a prime example" of an area that needs this. In 2022 it built over 40,000 feet of main elsewhere to give other single-feed areas a second feed.<sup><a href="#s3">3</a></sup></p>
+    <p>Growth is part of the reason too. In written answers to GBOS in July 2023, Enstar said that "as the Girdwood community continues to expand and demand for natural gas grows," more load falls on the single feed.<sup><a href="#s27">27</a></sup> Enstar's letter says the Nordic Spa at Hotel Alyeska added "significant additional load," and customers on the main grew 7% from 2016 to 2023.<sup><a href="#s3">3</a></sup> The GBOS minutes record the purpose as ensuring reliability and improving "low flow of gas to some parts of the valley."<sup><a href="#s28">28</a></sup> Enstar also calls two-way feeds an industry best practice for keeping pressure high enough at the end of the line in winter.<sup><a href="#s29">29</a></sup></p>
+    <p>Enstar has also said the line would help keep pressure up, which matters most in cold weather when demand peaks.<sup><a href="#s16">16</a></sup> At the July 2023 meeting, Enstar's engineer said growth and added load on the system were part of why the project had "come to a head." When explaining why a more northern route would work less well, he noted it wouldn't add capacity for "future expansion."<sup><a href="#s9">9</a></sup> A resident who called DNR reported being told the reasons were low gas pressure in that area and future development.<sup><a href="#s9">9</a></sup> So redundancy is the main stated goal, but capacity for growth and pressure at the far ends of the system are also part of it.</p>
+    <p><a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=2882">Enstar's answer at GBOS (48:02)</a> · <a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=4982">engineer on history and load (1:23:02)</a> · <a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=6314">engineer on route and expansion (1:45:14)</a></p>
+    <div class="callout warn"><b>What it doesn't protect against:</b> The new line starts at the same Ruane Road regulator station as the existing main.<sup><a href="#s9">9</a></sup> It protects against a break on the distribution main inside the valley. It wouldn't help if the transmission line along Turnagain Arm failed between Anchorage and Girdwood, which would cut off both Girdwood and Whittier.<sup><a href="#s16">16</a></sup></div>
+  </details>
+
+  <details>
+    <summary>How likely is the main line to fail, and how long would a fix take?</summary>
+    <p><b>How a line "goes out."</b> <span class="tag t-known">Documented</span> Nationally, excavation damage is a leading cause of life-threatening pipeline incidents.<sup><a href="#s20">20</a></sup> Enstar says excavators hit its pipes "over 100 times" across its system most years, and that 45% of hits from 2016 to 2022 happened between October and March. It also lists earthquakes, leaks and washouts.<sup><a href="#s3">3</a></sup> Girdwood's own record shows two kinds: a contractor strike in 2016 and a flood washout in 2021.<sup><a href="#s3">3</a></sup> Whittier's 2026 outage came from a submerged river crossing that was exposed and moving in the current.<sup><a href="#s16">16</a></sup></p>
+    <p><b>Probability.</b> <span class="tag t-est">Estimate</span> Enstar hasn't published a failure probability for the Girdwood main. Here are two rough ways to estimate it:</p>
+    <div class="math">Girdwood history: about 1 serious hit on the 6" main in 30 years (1996–2026)
+  → about 1 in 30 per year
+  → P(at least one such hit in 10 years) ≈ 1 − e^(−10/30) ≈ 28%
+
+Enstar system-wide: about 100+ hits/yr on 3,200+ miles of main
+  → about 0.03 hits per mile per year (an upper bound: many hits are on service lines)
+  × a few miles of main along Alyeska Hwy (my rough guess) × 10 years
+  → on the order of 1 hit per decade</div>
+    <p>Both methods suggest that some damage to the main within a decade is plausible, maybe 1 in 4 or higher. But most hits don't cause a valley-wide outage: in 2016 service held. An outage needs a break severe enough that Enstar has to shut the line off, especially in winter. My guess for that is well under the 28% figure, perhaps 5–15% over ten years. Treat this as an order of magnitude, not a forecast.</p>
+    <p><b>Time to fix.</b> <span class="tag t-known">Documented</span> Enstar estimates 4–7 days to restore service after a full outage, and months to reconnect some seasonal properties. The slow part is relighting: a technician has to turn each meter back on and relight the appliances.<sup><a href="#s3">3</a></sup> Enstar's engineer warned that in a cold snap, houses could freeze before crews reach them.<sup><a href="#s9">9</a></sup> For comparison, Whittier was without gas from Aug 16 to Aug 23, 2026, for 39 meters, and only because Enstar trucked in LNG from Alberta.<sup><a href="#s16">16</a>,<a href="#s17">17</a>,<a href="#s18">18</a></sup> Girdwood has about 40 times as many meters.</p>
+  </details>
+
+  <details>
+    <summary>How does Girdwood compare with other towns? Do most have two feeds?</summary>
+    <p><span class="tag t-unk">Not public</span> I found no statistic on what fraction of towns, or of Enstar's service area, have redundant feeds. Enstar calls a secondary feed "a best practice in the gas pipeline" industry and says it builds them for areas that only have one line.<sup><a href="#s3">3</a></sup></p>
+    <p><span class="tag t-known">Documented</span> The closest example is <b>Whittier</b>, at the end of the same Turnagain Arm feed. After the August 2026 river-crossing break, the whole town was without gas for about a week. Enstar restored service only by trucking LNG and regasification equipment from Edmonton, and it says repair costs will be spread across all ratepayers.<sup><a href="#s16">16</a></sup> Locally, in 2026 Enstar also had to reroute a gas line at Rabbit Creek in Anchorage using horizontal directional drilling.<sup><a href="#s19">19</a></sup></p>
+  </details>
+
+  <details>
+    <summary>What other routes were considered, and how do they compare?</summary>
+    <div class="scroll"><table>
+      <tr><th>Route</th><th>Who raised it</th><th>What's known</th></tr>
+      <tr><td><b>Section-line easement</b>, Ruane Rd → bore under Glacier Creek → section line to Virgin Creek Rd (4,850 ft)</td><td>Enstar's 2023 application</td><td>Enstar's written answer to GBOS: "This alternative is the only option available which utilizes existing rights of way, minimizes environmental impact, and accomplishes the purpose for the project."<sup><a href="#s27">27</a></sup> DNR issued its non-objection in 2024 and didn't weigh alternatives, which it says are up to the applicant.<sup><a href="#s29">29</a></sup> Residents appealed, and the appeal was still undecided as of May 2026.<sup><a href="#s7">7</a>,<a href="#s13">13</a></sup> It crosses two trails and designated open space.<sup><a href="#s4">4</a></sup> Enstar called it "the most reasonable way" and ranked its routing priorities as cost, then safety and access, then engineering.<sup><a href="#s3">3</a></sup></td></tr>
+      <tr><td><b>HLB Parcel 6-062 easement</b> (Res. 2026-11), 20 × ~1,000 ft between the section line and Virgin Creek Rd</td><td>Enstar's application to HLB (2026)</td><td>HLB describes it as an alternative to building that segment in the section-line easement.<sup><a href="#s1">1</a></sup> The staff report and map weren't available when I checked, so I don't know how it compares with the section-line route for trees, trails or neighbors.</td></tr>
+      <tr><td><b>North along the Karolius Drive / South Townsite alignment, then east</b></td><td>Brett Wilbanks and Shelly Rowton (former HLB land officer) at the July 2023 meeting</td><td>Enstar's engineer said off the top of his head that leaving the existing trunk further north keeps the single-trunk bottleneck and weakens the loop. Enstar promised a fuller answer.<sup><a href="#s9">9</a></sup> Enstar also said this route was unfeasible because it crosses HLB land, but Rowton said Enstar had never contacted HLB.<sup><a href="#s5">5</a>,<a href="#s6">6</a></sup> Supporters said it could serve South Townsite and open a second exit route.<sup><a href="#s9">9</a></sup> The GBOS minutes describe it as following an existing utility easement to Karolius, then crossing the creek nearer the Community Center.<sup><a href="#s28">28</a></sup> Enstar says it notified HLB in spring 2023, and HLB sent DNR no comments.<sup><a href="#s27">27</a>,<a href="#s29">29</a></sup></td></tr>
+      <tr><td><b>Drilling the whole length</b> instead of trenching</td><td>Public comments to DNR</td><td>DNR said it doesn't propose other construction methods. A suggestion to narrow the clearing to 10 feet outside the drilled sections also wasn't adopted, because DNR's letter has no stipulations.<sup><a href="#s29">29</a></sup></td></tr>
+      <tr><td><b>A future road corridor</b> (2011 plan for a second access road)</td><td>GBOS supervisor, July 2023</td><td>Enstar said it would take too long and doesn't reach where its distribution system is.<sup><a href="#s9">9</a></sup></td></tr>
+      <tr><td><b>Don't build it</b></td><td>Several residents</td><td>Enstar said there are no economical alternatives, and any other route would be longer than a mile.<sup><a href="#s9">9</a></sup> Some neighbors said they would accept the outage risk instead.<sup><a href="#s9">9</a></sup></td></tr>
+      <tr><td><b>An alternative proposed in the appeal</b></td><td>The appellants (2024)</td><td>Presented to the Land Use Committee as having lower impact and fitting Girdwood's comprehensive plan better. I didn't find its details.<sup><a href="#s8">8</a></sup></td></tr>
+    </table></div>
+    <p><a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=6149">Karolius question and Enstar's reply (1:42:29)</a> · <a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=6862">former HLB officer (1:54:22)</a></p>
+  </details>
+
+  <details>
+    <summary>Who pays, and how much would Girdwood rates go up?</summary>
+    <p><span class="tag t-known">Documented</span> Enstar said it is "capitalizing the project."<sup><a href="#s9">9</a></sup> For a regulated utility, that means the cost goes into its rate base and is recovered over many years through rates the Regulatory Commission of Alaska (RCA) approves for its whole system. Enstar's rate cases cover all of its customers (over 150,000).<sup><a href="#s21">21</a></sup> I found no sign of a Girdwood-only surcharge. Similarly, Enstar says the Whittier repair costs will be spread across all ratepayers.<sup><a href="#s16">16</a></sup></p>
+    <p><span class="tag t-unk">Not public</span> Enstar hasn't disclosed a cost estimate. DNR said it doesn't require one and that cost and how Enstar pays are outside its decision.<sup><a href="#s5">5</a>,<a href="#s29">29</a></sup> A resident at the 2023 meeting said it would cost "millions."<sup><a href="#s9">9</a></sup></p>
+    <p><span class="tag t-est">Estimate</span> For a sense of scale, assume it costs $2–5 million. A utility typically collects roughly 10–15% of a capital project's cost per year in rates (return, depreciation, taxes):</p>
+    <div class="math">$2M–$5M × 10–15% per year ≈ $200k–$750k per year
+÷ ~150,000 customers ≈ $1.30–$5 per customer per year
+                     ≈ $0.10–$0.40 per month, the same in Girdwood as in Anchorage</div>
+    <p>So the bill impact is likely small for everyone. If Girdwood customers paid the whole cost alone, it would be about 100 times more per customer, but nothing suggests that's how it would be billed.</p>
+  </details>
+
+  <details>
+    <summary>Could the corridor be an emergency road if the Alyeska Highway bridge is out?</summary>
+    <p><span class="tag t-known">Documented</span> Not as proposed. The line would go <i>under</i> Glacier Creek by horizontal directional drilling, so no bridge would be built.<sup><a href="#s9">9</a></sup> The cleared strip would be about 15–20 feet wide, reseeded, and left for alders to grow back.<sup><a href="#s9">9</a></sup> When asked in 2023 about pairing the work with a second access road, Enstar said that plan didn't fit its timeline or its system.<sup><a href="#s9">9</a></sup></p>
+    <p>That said, the section-line easement itself is 100 feet wide, and its primary legal purpose is public highway access. DNR noted that it "can be developed" as a road under state law.<sup><a href="#s29">29</a></sup> So the gas line doesn't create a road, but it wouldn't rule one out in the same easement. A road would need its own bridge over Glacier Creek, design, funding and permits.</p>
+  </details>
+
+  <details>
+    <summary>Will the public be able to use the corridor afterward? For what?</summary>
+    <p><span class="tag t-known">Documented</span> Enstar said it can't speak to future uses. It would restore the land as its permits require, mulching cleared brush on site and reseeding.<sup><a href="#s9">9</a></sup> Its engineer said he didn't know whether people would start using it as a trail.<sup><a href="#s9">9</a></sup> The section-line easement itself is a public access easement, and the state says such easements are "reserved for public use" and can't be obstructed.<sup><a href="#s22">22</a></sup> DNR said construction would temporarily block access to the Lower Virgin Creek, Joe Danich and Lower Iditarod trails, but not permanently. It also said none of these trails are legally protected rights-of-way.<sup><a href="#s29">29</a></sup> During construction, ADF&amp;G asked that anglers' access to Glacier and California creeks not be restricted, since coho run there from late July to early September.<sup><a href="#s29">29</a></sup></p>
+    <p><span class="tag t-unk">Not public</span> I couldn't find which activities would be allowed on the new HLB easement. That depends on HLB's easement terms and the Municipality's rules for the land. GBOS supervisor Brian Burnett suggested the corridor could support more trails.<sup><a href="#s11">11</a></sup> Neighbors and the Trails Committee chair worried it would damage the primitive character of the Lower Virgin Creek and Joe Danich trails.<sup><a href="#s4">4</a>,<a href="#s9">9</a></sup> A former Trails Committee chair appears to say (the transcript is garbled here) that the trail from Virgin Creek to Ruane was set aside for non-motorized use.<sup><a href="#s9">9</a></sup></p>
+  </details>
+
+  <details>
+    <summary>How often would Enstar run snowmachines there? Could anyone else?</summary>
+    <p><span class="tag t-known">Documented</span> At the meeting, Enstar said it does leak surveys about every four years. Its engineer expected those to be done on foot, possibly by snowmachine in winter once the ground firms up, but "likely on foot" because the line is short.<sup><a href="#s9">9</a></sup> The meeting minutes instead say "annually, probably on foot."<sup><a href="#s28">28</a></sup> Enstar's written answer only says surveys follow PHMSA's schedule.<sup><a href="#s27">27</a></sup> Either way, that means a visit once every one to four years, probably on foot. Construction is another matter: wetland sections would use construction mats under the equipment.<sup><a href="#s9">9</a></sup></p>
+    <p><span class="tag t-known">Documented</span> On other people's snowmachines: a commenter asked DNR to limit future mechanical access. DNR declined and said "the section line easement does not preclude motorized use as a public highway."<sup><a href="#s29">29</a></sup> <span class="tag t-unk">Not public</span> Whether Municipal or HLB rules restrict motorized use on the new HLB easement or the surrounding open space is a separate question I couldn't answer. Ask HLB.</p>
+  </details>
+
+  <details>
+    <summary>How much construction traffic on Timberline Drive and Virgin Creek Road, and for how long?</summary>
+    <p><span class="tag t-known">Documented</span> The 2023 application planned about <b>3–4 weeks</b> of construction (late July/early August to late August/early September), with access from Ruane Road on the west and Virgin Creek Road on the east. About 11 workers would be on site: 4 from Enstar, 4 from the drilling contractor, 2 tree clearers and possibly 1 excavating operator.<sup><a href="#s25">25</a></sup> The equipment listed:</p>
+    <div class="scroll"><table>
+      <tr><th>Equipment</th><th>Gross weight (lb)</th></tr>
+      <tr><td>Vermeer directional drill</td><td>60,000</td></tr>
+      <tr><td>200-class excavator</td><td>50,000</td></tr>
+      <tr><td>Vac truck</td><td>50,000</td></tr>
+      <tr><td>Reclaimer</td><td>45,000</td></tr>
+      <tr><td>Mud truck</td><td>35,000</td></tr>
+      <tr><td>F650/750 crew truck</td><td>28,000</td></tr>
+      <tr><td>Cat 308 and Cat 305 mini excavators</td><td>20,077 and 12,688</td></tr>
+      <tr><td>Two skid steers</td><td>12,000 each</td></tr>
+      <tr><td>Two ¾- or 1-ton trucks</td><td>10,000 each</td></tr>
+    </table></div>
+    <p>Tracked equipment would be stored along the alignment. Wheeled equipment would leave the site daily, and refueling would be from trucks on the road system.<sup><a href="#s25">25</a></sup> <span class="tag t-est">Estimate</span> Most of the drilling happens at the Glacier Creek crossing, reached from Ruane Road. The trenched section starts at the end of Virgin Creek Road. So Virgin Creek Road and Timberline would likely see a few heavy-equipment deliveries and pickups, plus daily trips by crew trucks and some wheeled equipment, for a few weeks. <span class="tag t-unk">Not public</span> No traffic estimate or schedule has been published for the current proposal. In 2024, Enstar said construction wouldn't happen that year.<sup><a href="#s30">30</a></sup> A neighbor said Virgin Creek Road already gets heavy traffic from visitors going to the falls.<sup><a href="#s9">9</a></sup></p>
+  </details>
+
+  <details>
+    <summary>What has Enstar done about bedrock, boulders and old-growth trees that could cause delays?</summary>
+    <p><span class="tag t-known">Documented</span> Enstar said it would pick the tie-in point after boring and soil analysis.<sup><a href="#s3">3</a></sup> Its permits only let it build in the alignment it applied for, so any change, including for constructability, means reapplying.<sup><a href="#s9">9</a></sup> A neighbor told GBOS the route on the bench runs through a boulder field that probably extends well below the surface.<sup><a href="#s9">9</a></sup> In 2023, the only on-the-ground work residents had seen was by surveyors.<sup><a href="#s9">9</a></sup></p>
+    <p>Commenters raised shallow bedrock and difficult terrain with DNR. DNR said it doesn't require subsurface investigations with an application, and that Enstar's design and terminus information was enough for its limited decision.<sup><a href="#s29">29</a></sup> Enstar's design calls for 4 feet of cover over trenched pipe. The Glacier Creek bore would be at least 10 feet below the streambed, with the drill rig set 200 feet back from the high-water line.<sup><a href="#s25">25</a></sup> Since then, Enstar has concluded it doesn't need to cross Virgin Creek, which removes one of the two bores.<sup><a href="#s29">29</a></sup></p>
+    <p><span class="tag t-unk">Not public</span> I found no geotechnical report or contingency plan for this project. For comparison, Enstar's 2026 Rabbit Creek reroute in Anchorage was delayed by drill rig delivery and a contractor change. Its fallback was to pull the pipe and redesign over the winter if the drilling couldn't be done.<sup><a href="#s19">19</a></sup></p>
+  </details>
+
+  <details>
+    <summary>How many trees would be cut? Would the corridor be replanted or kept clear?</summary>
+    <p><span class="tag t-unk">Not public</span> No tree count has been published, for old-growth trees or any others.</p>
+    <p><span class="tag t-known">Documented</span> The 2023 plan cleared 3,350 feet × 20 feet, starting at the end of Virgin Creek Road and heading west. The 1,650 feet that would be drilled (Glacier Creek and its wetlands) weren't to be cleared, apart from the drill pits.<sup><a href="#s25">25</a></sup></p>
+    <p><span class="tag t-est">Estimate</span> The areas involved:</p>
+    <div class="math">2023 cleared strip:        20 ft × 3,350 ft = 67,000 sq ft  ≈ 1.5 acres
+2023 total easement asked: 20 ft × 4,850 ft = 97,000 sq ft  ≈ 2.2 acres (DNR: 2.23)
+HLB Parcel 6-062 easement: 20 ft × 1,000 ft = 20,000 sq ft  ≈ 0.46 acre</div>
+    <p>The trees could be counted directly: walk the staked centerline and count the stems over a set diameter within 10 feet either side. Neighbors described trees "hundreds of years old" along the route.<sup><a href="#s9">9</a></sup></p>
+    <p><span class="tag t-known">Documented</span> Revegetation plan from the application: cleared trees are mulched and spread along the strip. The trench (2 ft wide, 4 ft deep) is backfilled to the original grade, with topsoil on top as "a seed bed for native species." Seed is native to the site first, then the area, then the state. A DEC stormwater plan applies.<sup><a href="#s25">25</a></sup> At the meeting, Enstar said it would clear about 15 feet, "maybe up to 20," mulch and chip on site, and reseed. A third-party inspector would check soil stabilization for the state DEC permit.<sup><a href="#s9">9</a></sup> But Enstar also wrote that federal pipeline-safety (PHMSA) rules require a cleared right-of-way for leak surveys and signs, so it asked to clear 20 feet for the full length.<sup><a href="#s3">3</a></sup> Its engineer expected alders to grow back.<sup><a href="#s9">9</a></sup> In other words, the corridor would grow back as brush, not forest, and would be kept passable for people on foot doing surveys. Nothing I found says it must be passable to vehicles. Enstar offered to meet neighbors about revegetation near their homes.<sup><a href="#s3">3</a></sup></p>
+    <figure style="margin:14px 0">
+      <div style="display:flex;gap:8px"><img src="sources/img/similar-corridor-1.jpg" alt="Freshly cleared and backfilled gas line corridor" style="width:50%;border-radius:6px"><img src="sources/img/similar-corridor-2.jpg" alt="Freshly cleared and backfilled gas line corridor through brush and trees" style="width:50%;border-radius:6px"></div>
+      <figcaption style="font-size:.82rem;color:var(--muted)">From a file labeled "Enstar similar photos" in the July 2023 GBOS materials: what a freshly built corridor looked like on a similar project. The file doesn't say where or when they were taken.<sup><a href="#s31">31</a></sup></figcaption>
+    </figure>
+    <p><a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=3774">Enstar on clearing and reseeding (1:02:54)</a> · <a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=5323">why 15–20 ft (1:28:43)</a></p>
+  </details>
+</section>
+
+<section id="limits">
+  <h2>Limitations</h2>
+  <ul>
+    <li><b>The HLB staff report for Resolution 2026-11 wasn't available.</b> HLB said the Nov 19 packet would be posted Nov 13, but I couldn't get it, so I don't have its map, its exact alignment, its agency comments or its conditions. It will likely answer several questions above. Read it before testifying.</li>
+    <li><b>I didn't read the residents' appeal itself.</b> I read DNR's decision, Enstar's application and the 2023 GBOS materials from copies that the Municipality's Girdwood staff sent to GBOS on Nov 13, 2026. Several are scanned, and I read them through OCR, so check the copies linked below before quoting.</li>
+    <li><b>The appeal's outcome is unknown.</b> The latest record I found (May 2026) says DNR hadn't decided it.</li>
+    <li><b>Meeting quotes come from machine transcripts</b> (<a href="https://open-minutes.nickcrews.workers.dev/">Open Minutes</a>), which mishear names and words and sometimes misattribute speakers. Each link jumps to that moment in the video, so you can check.</li>
+    <li><b>Estimates are mine,</b> not Enstar's, and are only meant to give a sense of scale.</li>
+    <li><b>The 2023 plan may have changed.</b> Much of the detail here (lengths, equipment, schedule) comes from Enstar's May 2023 application. Enstar has since dropped the Virgin Creek crossing, and the HLB easement is a further change. The current design hasn't been published.</li>
+    <li><b>Sources not checked:</b> RCA filings for project-specific costs. Enstar's internal engineering, route-comparison or geotechnical studies (none are public that I know of). Recordings of the Land Use Committee meetings (not in Open Minutes). The Nov 9, 2026 Land Use Committee meeting (its documents failed to load). HLBAC meeting recordings. Municipal rules on motorized use of HLB land. The Girdwood Trails Plan's specific designations for these trails. Any Enstar outreach since 2024. PHMSA data specific to Enstar.</li>
+  </ul>
+</section>
+
+<section id="sources">
+  <h2>Sources</h2>
+  <p style="font-size:.9rem;color:var(--muted)">"Archive" links are Wayback Machine snapshots. "Copy" links are copies of public government documents kept on this site in case the original moves.</p>
+  <ol class="src">
+    <li id="s1">Heritage Land Bank. Public Hearing Notice, HLBAC Resolution 2026-11 (Enstar, Parcel 6-062). Posted Nov 5, 2026.<br><span class="arch"><a href="https://www.muni.org/Documents/Public%20Notices/2026/HLBAC_2026-11_Enstar_6-062_PHN.pdf">Original</a> · <span>archive attempt failed</span></span></li>
+    <li id="s2">Heritage Land Bank Advisory Commission. Agenda, November 19, 2026.<br><span class="arch"><a href="https://www.muni.org/Documents/Departments/Real%20Estate/Heritage%20Land%20Bank/2026%20Meetings/HLBAC_20261119_Agenda.pdf">Original</a> · <span>archive attempt failed</span></span></li>
+    <li id="s3">Enstar (Steve Cooper). Letter to GBOS and DNR re ADL 234206, Aug 3, 2023.<br><span class="arch"><a href="https://www.muni.org/Departments/operations/streets/Service/GBOS/2023%2008%2003%20ENSTAR%20Comments%20re%20ADL%20234206.pdf">Original</a> · <a href="https://web.archive.org/web/20251108002010/https://www.muni.org/Departments/operations/streets/Service/GBOS/2023%2008%2003%20ENSTAR%20Comments%20re%20ADL%20234206.pdf">Archive</a> · <a href="sources/enstar-2023-08-03-letter-to-gbos.pdf">Copy</a></span></li>
+    <li id="s4">Girdwood Board of Supervisors. Letter of Objection: ADL 234206, July 19, 2023.<br><span class="arch"><a href="https://www.muni.org/Departments/operations/streets/Service/GBOS/GBOS%20Objection%20to%20ADL%20234206.pdf">Original</a> · <a href="https://web.archive.org/web/20260310163538/https://www.muni.org/Departments/operations/streets/Service/GBOS/GBOS%20Objection%20to%20ADL%20234206.pdf">Archive</a> · <a href="sources/gbos-2023-07-19-objection-adl-234206.pdf">Copy</a></span></li>
+    <li id="s5">Turnagain News. “Plan for gas line sparks heated reaction,” Jul 30, 2023.<br><span class="arch"><a href="https://www.turnagainnews.org/articles/plan-for-gas-line-sparks-heated-reaction">Original</a> · <a href="https://web.archive.org/web/20261115212848/https://www.turnagainnews.org/articles/plan-for-gas-line-sparks-heated-reaction">Archive</a></span></li>
+    <li id="s6">Turnagain News. “Enstar agrees to further review controversial gas line plan,” Aug 15, 2023.<br><span class="arch"><a href="https://www.turnagainnews.org/articles/enstar-agrees-to-further-review-controversial-gas-line-plan">Original</a> · <a href="https://web.archive.org/web/20261115214143/https://www.turnagainnews.org/articles/enstar-agrees-to-further-review-controversial-gas-line-plan">Archive</a></span></li>
+    <li id="s7">Turnagain News. “State OKs Gas Line through Virgin Creek Forest,” Sep 6, 2024.<br><span class="arch"><a href="https://www.turnagainnews.org/articles/state-oks-gas-line-through-virgin-creek-forest">Original</a> · <a href="https://web.archive.org/web/20261115214226/https://www.turnagainnews.org/articles/state-oks-gas-line-through-virgin-creek-forest">Archive</a></span></li>
+    <li id="s8">Turnagain News. “Girdwood Board reverses stance on Gas Line,” Sep 18, 2024.<br><span class="arch"><a href="https://www.turnagainnews.org/articles/girdwood-board-reverses-stance-on-gas-line">Original</a> · <a href="https://web.archive.org/web/20240920195059/https://www.turnagainnews.org/articles/girdwood-board-reverses-stance-on-gas-line">Archive</a></span></li>
+    <li id="s9">GBOS regular meeting, July 17, 2023 (Enstar item starts 43:03). Machine transcript on Open Minutes; video on YouTube; transcript excerpt copy.<br><span class="arch"><a href="https://open-minutes.nickcrews.workers.dev/meetings/25?t=2583">Original</a> · <a href="https://www.youtube.com/watch?v=qae1FAlKgZs&amp;t=2583s">Video</a> · <a href="sources/transcripts/gbos-2023-07-17-enstar-item.txt">Copy</a></span></li>
+    <li id="s10">GBOS special meeting, Sept 13, 2024. Machine transcript on Open Minutes; video on YouTube; transcript copy.<br><span class="arch"><a href="https://open-minutes.nickcrews.workers.dev/meetings/31">Original</a> · <a href="https://www.youtube.com/watch?v=fQCo79vPops">Video</a> · <a href="sources/transcripts/gbos-2024-09-13-special-meeting.txt">Copy</a></span></li>
+    <li id="s11">GBOS. Minutes, special meeting Sept 13, 2024.<br><span class="arch"><a href="https://muni.org/Departments/operations/streets/Service/GBOS/GBOS%20SM%209.13.24%20Re%20Section%20LIne%20Easement%20appeal%20and%20Project%20Anchorage%20minutes%20final.pdf">Original</a> · <a href="https://web.archive.org/web/20250516073754/https://www.muni.org/Departments/operations/streets/Service/GBOS/GBOS%20SM%209.13.24%20Re%20Section%20LIne%20Easement%20appeal%20and%20Project%20Anchorage%20minutes%20final.pdf">Archive</a> · <a href="sources/gbos-2024-09-13-special-meeting-minutes.pdf">Copy</a></span></li>
+    <li id="s12">Girdwood Land Use Committee. Minutes, Sept 9, 2024.<br><span class="arch"><a href="https://muni.org/Departments/operations/streets/Service/Land%20Use%20Committee/LUC%20Sept%209%202024%20minutes%20final.pdf">Original</a> · <span>archive attempt failed</span></span></li>
+    <li id="s13">Girdwood Land Use Committee. Minutes, May 11, 2026.<br><span class="arch"><a href="https://www.muni.org/Departments/operations/streets/Service/Land%20Use%20Committee/LUC%20May%202026%20minutes%20final.pdf">Original</a> · <span>archive attempt failed</span></span></li>
+    <li id="s14">GBOS. Meeting packet, Nov 16, 2026.<br><span class="arch"><a href="https://www.muni.org/Documents/Departments/Maintenance%20and%20Operations/Street%20Maintenance/Municipal%20Road%20Maintenance%20Service%20Areas/Girdwood%20Board%20of%20Supervisors/GBOS%20Nov%2016%20meeting%20packet.pdf">Original</a> · <span>archive attempt failed</span></span></li>
+    <li id="s15">HLBAC. Meeting packet, March 26, 2026 (a staff report citing AMC 25.40.025: HLBAC holds a hearing before recommending a disposal to the Mayor and Assembly).<br><span class="arch"><a href="https://www.muni.org/Departments/hlb/SiteAssets/Pages/HLBCommission/HLBAC_20260326_Packet.pdf">Original</a> · <span>archive attempt failed</span></span></li>
+    <li id="s16">Turnagain News (Chase Berenson). “Whittier natural gas shutdown shows vulnerability of communities outside the Anchorage bowl,” Sep 1, 2026.<br><span class="arch"><a href="https://www.turnagainnews.org/articles/whittier-natural-gas-shutdown-shows-vulnerability-of-communities-outside-the-anchorage-bowl">Original</a> · <a href="https://web.archive.org/web/20261115214453/https://www.turnagainnews.org/articles/whittier-natural-gas-shutdown-shows-vulnerability-of-communities-outside-the-anchorage-bowl">Archive</a></span></li>
+    <li id="s17">Anchorage Daily News. “Triggering a 3-week outage, Enstar shuts off gas to Whittier for pipeline repairs,” Aug 17, 2026.<br><span class="arch"><a href="https://www.adn.com/alaska-news/2026/08/17/triggering-a-3-week-outage-enstar-shuts-off-gas-to-whittier-for-pipeline-repairs/">Original</a> · <a href="https://web.archive.org/web/20260821040614/https://www.adn.com/alaska-news/2026/08/17/triggering-a-3-week-outage-enstar-shuts-off-gas-to-whittier-for-pipeline-repairs/">Archive</a></span></li>
+    <li id="s18">Alaska Public Media / KTOO. “Whittier gas restored after Enstar secures temporary LNG supply,” Aug 26, 2026.<br><span class="arch"><a href="https://www.ktoo.org/2026/08/26/whittier-gas-restored-after-enstar-secures-temporary-lng-supply/">Original</a> · <a href="https://web.archive.org/web/20260828073719/https://www.ktoo.org/2026/08/26/whittier-gas-restored-after-enstar-secures-temporary-lng-supply/">Archive</a></span></li>
+    <li id="s19">Enstar. “2026 Rabbit Creek Gas Line Re-route” project page.<br><span class="arch"><a href="https://www.enstarnaturalgas.com/rabbit-creek/">Original</a> · <a href="https://web.archive.org/web/20261115214830/https://www.enstarnaturalgas.com/rabbit-creek/">Archive</a></span></li>
+    <li id="s20">PHMSA. National Pipeline Performance Measures.<br><span class="arch"><a href="https://www.phmsa.dot.gov/data-and-statistics/pipeline/national-pipeline-performance-measures">Original</a> · <a href="https://web.archive.org/web/20261022002827/https://www.phmsa.dot.gov/data-and-statistics/pipeline/national-pipeline-performance-measures">Archive</a></span></li>
+    <li id="s21">Radio Kenai. “ENSTAR Clarifies Rate Hike Impact as Southcentral Faces a Shrinking Gas Supply,” 2025.<br><span class="arch"><a href="https://radiokenai.com/?p=186607">Original</a> · <a href="https://web.archive.org/web/20261115214859/https://radiokenai.com/enstar-clarifies-rate-hike-impact-as-southcentral-faces-a-shrinking-gas-supply/">Archive</a></span></li>
+    <li id="s22">Alaska DNR, Division of Mining, Land and Water. Title information (section-line easements).<br><span class="arch"><a href="https://dnr.alaska.gov/mlw/landsales/info/title-information/">Original</a> · <a href="https://web.archive.org/web/20260517151356/https://dnr.alaska.gov/mlw/landsales/info/title-information/">Archive</a></span></li>
+    <li id="s23">Alaska DNR. Public Notice, ADL 234206, July 6, 2023.<br><span class="arch"><a href="https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=211721">Original</a> · <span>archive attempt failed</span> · <a href="sources/2023-07-06-dnr-public-notice-adl-234206.pdf">Copy</a></span></li>
+    <li id="s24">Alaska DNR. Agency Review Notice, comment period extended to Aug 3, 2023 (July 19, 2023), with application attached.<br><span class="arch"><a href="sources/2023-07-dnr-extended-public-notice-adl-234206.pdf">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+    <li id="s25">Enstar. Application for Easement ADL 234206 (redacted), development narrative and construction drawings “Girdwood Townsite Reinforcement,” May 2023.<br><span class="arch"><a href="sources/2023-enstar-application-adl-234206-redacted.pdf">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+    <li id="s26">Alaska DNR (Yannick Calvez). Public-notice map, ADL 234206, June 30, 2023.<br><span class="arch"><a href="sources/2023-enstar-route-map.pdf">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+    <li id="s27">Enstar. “ADL 234206 – Response to Request for Project Information,” answers to GBOS questions, July 2023.<br><span class="arch"><a href="sources/2023-07-enstar-answers-to-gbos-questions.pdf">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+    <li id="s28">GBOS. Minutes, regular meeting July 17, 2023 (converted from the original .doc).<br><span class="arch"><a href="sources/2023-07-17-gbos-minutes.pdf">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+    <li id="s29">Alaska DNR, Southcentral Regional Land Office (Jay Rokos). ADL 234206 decision: non-objection to developing the section-line easement, with public-comment responses. Signed Aug 26, 2024. 21 pages.<br><span class="arch"><a href="sources/2024-08-dnr-signed-decision-adl-234206.pdf">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+    <li id="s30">Enstar status update relayed by GBOS (Briana Sullivan) to Girdwood staff, Sept 9, 2024.<br><span class="arch"><a href="sources/2024-09-enstar-update.pdf">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+    <li id="s31">“Enstar similar photos,” July 2023 GBOS materials.<br><span class="arch"><a href="sources/2023-07-enstar-similar-photos.docx">Copy</a> · <span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span></span></li>
+  </ol>
+</section>
+
+</main>
+<footer><div class="wrap">Made by a Girdwood resident from public records. Not legal, engineering or financial advice. Not affiliated with Enstar, the Municipality of Anchorage or the State of Alaska.</div></footer>
+</body>
+</html>
