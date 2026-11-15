@@ -1,2 +1,5 @@
 node_modules/
 .wrangler/
+dist/
+index.html
+_to_delete/

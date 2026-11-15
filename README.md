@@ -6,13 +6,17 @@ Live at https://enstar-pipeline.nickcrews.workers.dev
 
 ## Layout
 
-- `public/index.html`: the whole site (summary, timeline, FAQ, limitations, sources)
+- `template.html`: the page (summary, timeline, FAQ, limitations); `build.py` fills in the numbered source list and writes `index.html`, the Vite entry
 - `public/sources/`: copies of public government documents and meeting transcripts cited by the page
 - `wrangler.jsonc`: Cloudflare Workers static-assets config
 
-## Deploy
+## Develop and deploy
 
 ```sh
 npm install
-npx wrangler deploy
+npm run dev      # regenerate index.html, serve at http://localhost:5173
+npm run build    # regenerate index.html, build to dist/
+npm run deploy   # build, then wrangler deploy to enstar-pipeline.nickcrews.workers.dev
 ```
+
+Edit `template.html` for page content and `build.py` for the source list; `index.html` is generated.

@@ -1,4 +1,4 @@
-"""Render public/index.html from template.html by filling in the numbered source list.
+"""Render index.html (the Vite entry) from template.html by filling in the numbered source list.
 
 Usage: python3 build.py
 """
@@ -134,8 +134,8 @@ def main() -> None:
     for _, _, _, _, copy in SOURCES:
         if copy and not (ROOT / "public" / copy).exists():
             raise SystemExit(f"missing local copy: {copy}")
-    (ROOT / "public" / "index.html").write_text(out)
-    print("wrote public/index.html")
+    (ROOT / "index.html").write_text(out)
+    print("wrote index.html")
 
 
 if __name__ == "__main__":
