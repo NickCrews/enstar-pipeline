@@ -7,10 +7,14 @@
     "dev": "npm run gen && vite",
     "build": "npm run gen && vite build",
     "preview": "npm run build && vite preview",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "map": "python3 map_data.py"
   },
   "devDependencies": {
     "vite": "^7",
     "wrangler": "^4"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
   }
 }
