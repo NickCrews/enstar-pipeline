@@ -17,19 +17,32 @@ const COLORS = {
 
 // Each view: what to frame and what to highlight. Keys in `hl` match featureKeys() below.
 const VIEWS = {
-  system: { title: "Today: one feed into the valley", hl: ["transmission", "main6", "regulator", "proposed"], frame: ["main6", "regulator", "proposed"] },
-  transmission: { title: "The line from Anchorage also feeds Whittier", hl: ["transmission", "main6", "regulator"], frame: ["transmission"] },
-  main: { title: "The existing 6-inch main along the Alyeska Highway", hl: ["main6", "regulator", "strike"], frame: ["main6"] },
-  strike: { title: "2016: contractor hits the main near 1127 Alyeska Hwy", hl: ["main6", "strike"], frame: ["strike"], zoom: 16 },
-  ruane: { title: "Ruane Road: regulator station and 2021 washout", hl: ["main6", "regulator", "street:Ruane Rd"], frame: ["street:Ruane Rd", "regulator"], pad: 0.6 },
-  sle: { title: "The state section-line easement (100 ft wide)", hl: ["sle", "proposed"], frame: ["sle"] },
-  route: { title: "The 2023 route: Ruane Rd to Virgin Creek Rd", hl: ["proposed", "sle", "tie"], frame: ["proposed"] },
-  glacier: { title: "Drilled under Glacier Creek (~1,500 ft)", hl: ["bore", "stream", "tie"], frame: ["bore"], pad: 0.4 },
-  trench: { title: "Trenched and cleared (~3,350 ft × 20 ft)", hl: ["trench", "sle"], frame: ["trench"] },
-  hlb: { title: "HLB Parcel 6-062 (Tract 20-A): the Res. 2026-11 easement", hl: ["hlb_6_062", "proposed", "sle", "tie"], frame: ["hlb_6_062"] },
-  neighbors: { title: "The east end: Virgin Creek Rd and Timberline Dr", hl: ["private", "tie", "trench", "street:Virgin Creek Rd", "street:Timberline Dr"], frame: ["neighbors"] },
-  traffic: { title: "Construction access: Ruane Rd (west) and Virgin Creek Rd (east)", hl: ["street:Ruane Rd", "street:Virgin Creek Rd", "street:Timberline Dr", "proposed"], frame: ["proposed", "street:Virgin Creek Rd"] },
-  owners: { title: "Who owns the land", hl: ["hlb", "muni", "public", "private", "proposed"], frame: ["proposed"], pad: 0.5 },
+  system: { title: "Today: one feed into the valley", hl: ["transmission", "main6", "regulator", "proposed"], frame: ["main6", "regulator", "proposed"],
+    labels: [["main6", "Existing 6-inch main: the only feed"], ["regulator", "Regulator station", "top"], ["proposed", "Proposed second line", "bottom"]] },
+  transmission: { title: "The line from Anchorage also feeds Whittier", hl: ["transmission", "main6", "regulator"], frame: ["transmission"],
+    labels: [["transmission", "One line: Anchorage → Girdwood → Whittier", "top"], ["regulator", "Girdwood regulator", "right"]] },
+  main: { title: "The existing 6-inch main along the Alyeska Highway", hl: ["main6", "regulator", "strike"], frame: ["main6"],
+    labels: [["main6", "6-inch main up the Alyeska Hwy"], ["strike", "2016 strike", "left"], ["regulator", "Regulator station", "bottom"]] },
+  strike: { title: "2016: contractor hits the main near 1127 Alyeska Hwy", hl: ["main6", "strike"], frame: ["strike"], zoom: 16,
+    labels: [["strike", "Contractor hit the main here (Aug 2016)"], ["main6", "6-inch main"]] },
+  ruane: { title: "Ruane Road: regulator station and 2021 washout", hl: ["main6", "regulator", "street:Ruane Rd"], frame: ["street:Ruane Rd", "regulator"], pad: 0.6,
+    labels: [["street:Ruane Rd", "Ruane Rd (washed out Oct 2021)", "bottom"], ["regulator", "Regulator station", "top"]] },
+  sle: { title: "The state section-line easement (100 ft wide)", hl: ["sle", "proposed"], frame: ["sle"],
+    labels: [["sle", "Section-line easement, 100 ft wide (since 1972)", "top"]] },
+  route: { title: "The 2023 route: Ruane Rd to Virgin Creek Rd", hl: ["proposed", "sle", "tie"], frame: ["proposed"],
+    labels: [["bore", "Drilled under Glacier Creek", "top"], ["trench", "Trenched, 20-ft clearing", "top"], ["tie:west", "Tie-in to 6-inch main", "bottom"], ["tie:east", "Tie-in to 2-inch main", "bottom"]] },
+  glacier: { title: "Drilled under Glacier Creek (~1,500 ft)", hl: ["bore", "stream:Glacier Creek", "tie"], frame: ["bore"], pad: 0.4,
+    labels: [["bore", "~1,500 ft bore, 10+ ft under the streambed", "top"], ["stream:Glacier Creek", "Glacier Creek"], ["tie:west", "End of Ruane Rd", "bottom"]] },
+  trench: { title: "Trenched and cleared (~3,350 ft × 20 ft)", hl: ["trench", "sle"], frame: ["trench"],
+    labels: [["trench", "3,350 ft × 20 ft cleared", "top"], ["tie:east", "End of Virgin Creek Rd", "bottom"]] },
+  hlb: { title: "HLB Parcel 6-062 (Tract 20-A): the Res. 2026-11 easement", hl: ["hlb_6_062", "proposed", "sle", "tie"], frame: ["hlb_6_062"],
+    labels: [["hlb_6_062", "HLB Parcel 6-062 (Tract 20-A)"], ["tie:east", "Virgin Creek Rd", "right"], ["sle", "Section-line easement", "top"]] },
+  neighbors: { title: "The east end: Virgin Creek Rd and Timberline Dr", hl: ["private", "tie", "trench", "street:Virgin Creek Rd", "street:Timberline Dr"], frame: ["neighbors"],
+    labels: [["street:Virgin Creek Rd", "Virgin Creek Rd", "bottom"], ["street:Timberline Dr", "Timberline Dr", "right"], ["tie:east", "Tie-in", "left"]] },
+  traffic: { title: "Construction access: Ruane Rd (west) and Virgin Creek Rd (east)", hl: ["street:Ruane Rd", "street:Virgin Creek Rd", "street:Timberline Dr", "proposed"], frame: ["proposed", "street:Virgin Creek Rd"],
+    labels: [["street:Ruane Rd", "West access: Ruane Rd", "bottom"], ["street:Virgin Creek Rd", "East access: Virgin Creek Rd", "bottom"]] },
+  owners: { title: "Who owns the land", hl: ["hlb", "muni", "public", "private", "proposed"], frame: ["proposed"], pad: 0.5,
+    labels: [["hlb_6_062", "Heritage Land Bank"], ["street:Timberline Dr", "Private homes", "right"], ["proposed", "Proposed line", "top"]] },
 };
 
 function featureKeys(f) {
@@ -42,6 +55,8 @@ function featureKeys(f) {
   if (p.kind) keys.push(p.kind);
   if (p.layer === "proposed") keys.push("proposed");
   if (p.layer === "street") keys.push(`street:${p.name}`);
+  if (p.layer === "stream") keys.push(`stream:${p.name}`);
+  if (p.kind === "tie") keys.push(/Virgin Creek/.test(p.name) ? "tie:east" : "tie:west");
   return keys;
 }
 
@@ -119,15 +134,38 @@ async function init() {
   const layers = [];
   const order = ["parcel", "sle", "street", "stream", "infra", "proposed"];
   const sorted = [...data.features].sort((a, b) => order.indexOf(a.properties.layer) - order.indexOf(b.properties.layer));
+  const HOVER = { color: "#ffd43b", weight: 3, opacity: 1, fillOpacity: 0.45 };
+  const SELECTED = { color: "#fff200", weight: 4, opacity: 1, fillOpacity: 0.55 };
+  let selected = null;
   for (const f of sorted) {
     const lyr = L.geoJSON(f, { style: (ft) => baseStyle(ft, false), pointToLayer: pointLayer });
+    const entry = { f, lyr, keys: featureKeys(f), on: false };
     lyr.eachLayer((l) => {
       const html = popupHtml(f.properties);
       if (html) l.bindPopup(html, { maxWidth: 280 });
-      if (f.properties.layer !== "parcel" && f.properties.name) l.bindTooltip(f.properties.name, { sticky: true });
+      if (f.properties.layer === "parcel") {
+        const tip = f.properties.hlb_6_062 ? `HLB Parcel 6-062 · ${f.properties.owner}` : f.properties.owner;
+        if (tip) l.bindTooltip(tip, { sticky: true, className: "parcel-tip" });
+        l.on("mouseover", () => { if (l !== selected) l.setStyle(HOVER); });
+        l.on("mouseout", () => { if (l !== selected) l.setStyle(baseStyle(f, entry.on)); });
+        l.on("popupopen", () => {
+          const prev = selected;
+          selected = l;
+          if (prev && prev !== l) prev.fire("restyle");
+          l.setStyle(SELECTED);
+          l.closeTooltip();
+        });
+        l.on("popupclose", () => {
+          if (selected === l) selected = null;
+          l.setStyle(baseStyle(f, entry.on));
+        });
+        l.on("restyle", () => l.setStyle(baseStyle(f, entry.on)));
+        l.on("tooltipopen", () => { if (l === selected) l.closeTooltip(); });
+      } else if (f.properties.name) {
+        l.bindTooltip(f.properties.name, { sticky: true });
+      }
     });
     lyr.addTo(map);
-    const entry = { f, lyr, keys: featureKeys(f) };
     layers.push(entry);
     for (const k of entry.keys) {
       if (!byKey.has(k)) byKey.set(k, []);
@@ -144,19 +182,72 @@ async function init() {
   const caption = document.getElementById("map-caption");
   let current = null;
 
-  function show(name) {
-    const v = VIEWS[name] || VIEWS.system;
-    if (name === current) return;
-    current = name;
-    const hl = new Set(v.hl);
+  // Where to pin a label for a key: a point, the middle of the longest line, or a polygon's center.
+  function anchor(key) {
+    let best = null;
+    let bestLen = -1;
+    let pointFallback = null;
+    for (const e of byKey.get(key) || []) {
+      if (!e.f) continue;
+      const g = e.f.geometry;
+      if (g.type === "Point") {
+        pointFallback ??= L.latLng(g.coordinates[1], g.coordinates[0]);
+        continue;
+      }
+      const lines = g.type === "LineString" ? [g.coordinates] : g.type === "MultiLineString" ? g.coordinates : null;
+      if (lines) {
+        for (const c of lines) {
+          if (c.length > bestLen) {
+            bestLen = c.length;
+            const m = c[Math.floor(c.length / 2)];
+            best = L.latLng(m[1], m[0]);
+          }
+        }
+      } else {
+        const b = e.lyr.getBounds();
+        const size = b.getNorthEast().distanceTo(b.getSouthWest());
+        if (size > bestLen) {
+          bestLen = size;
+          best = b.getCenter();
+        }
+      }
+    }
+    return best ?? pointFallback;
+  }
+
+  const labelGroup = L.layerGroup().addTo(map);
+  function setLabels(list) {
+    labelGroup.clearLayers();
+    for (const [key, text, dir] of list || []) {
+      const ll = anchor(key);
+      if (!ll) continue;
+      L.tooltip({ permanent: true, direction: dir || (key.startsWith("hlb") ? "center" : "right"), className: "map-label", offset: [0, 0], interactive: false })
+        .setLatLng(ll)
+        .setContent(text)
+        .addTo(labelGroup);
+    }
+  }
+
+  function emphasize(hlKeys) {
+    const hl = new Set(hlKeys);
     for (const e of layers) {
       const on = e.keys.some((k) => hl.has(k));
+      e.on = on;
       e.lyr.eachLayer((l) => {
+        if (l === selected) return;
         if (l.setStyle && e.f.geometry.type !== "Point") l.setStyle(baseStyle(e.f, on));
         if (e.f.geometry.type === "Point") l.setStyle({ fillOpacity: on ? 1 : 0.3, opacity: on ? 1 : 0.3 });
       });
       if (on) e.lyr.bringToFront();
     }
+  }
+
+  function show(name) {
+    const v = VIEWS[name] || VIEWS.system;
+    if (name === current) return;
+    current = name;
+    emphasize(v.hl);
+    setLabels(v.labels);
     let bounds = null;
     for (const k of v.frame) {
       for (const e of byKey.get(k) || []) {
@@ -202,6 +293,25 @@ async function init() {
     }
   }, { passive: true });
   document.querySelectorAll("details").forEach((d) => d.addEventListener("toggle", onScroll));
+  // Terms in the text marked <span class="term" data-hl="key" data-label="...">: hover or tap to spotlight on the map.
+  for (const t of document.querySelectorAll(".term[data-hl]")) {
+    const keys = t.dataset.hl.split(" ");
+    const enter = () => {
+      emphasize(keys);
+      setLabels(keys.map((k) => [k, t.dataset.label || t.textContent]));
+    };
+    const leave = () => {
+      const v = VIEWS[current] || VIEWS.system;
+      emphasize(v.hl);
+      setLabels(v.labels);
+    };
+    t.addEventListener("mouseenter", enter);
+    t.addEventListener("mouseleave", leave);
+    t.addEventListener("focus", enter);
+    t.addEventListener("blur", leave);
+    t.tabIndex = 0;
+  }
+
   map.fitBounds(L.latLngBounds([60.938, -149.18], [60.972, -149.10]));
   onScroll();
   setTimeout(() => map.invalidateSize(), 200);
