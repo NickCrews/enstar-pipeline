@@ -1,4 +1,7 @@
 .layout { display: grid; grid-template-columns: minmax(0, 1fr); }
+.layout > * { min-width: 0; }
+.layout main { width: 100%; overflow-wrap: anywhere; }
+.layout .math, .layout .scroll { max-width: 100%; overflow-x: auto; }
 .mapcol { position: sticky; top: 44px; z-index: 4; order: -1; height: 42vh; background: #dee2e6; border-bottom: 1px solid var(--line); }
 #map { position: absolute; inset: 0; }
 #map-caption {
