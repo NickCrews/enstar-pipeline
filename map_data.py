@@ -27,6 +27,9 @@ ARCGIS = "https://services2.arcgis.com/Ce3DhLRthdwbHlfF/arcgis/rest/services"
 # Area shown on the map (lon/lat)
 PARCEL_BBOX = (-149.168, 60.940, -149.120, 60.958)
 CONTEXT_BBOX = (-149.20, 60.930, -149.10, 60.975)
+# Seward Hwy from Girdwood southeast to the Twentymile River, where the line to Whittier broke in Aug 2026.
+TWENTYMILE_BBOX = (-149.20, 60.83, -148.95, 60.975)
+TWENTYMILE_BREAK = (-148.98679749171657, 60.845124353593235)
 
 HLB_6_062 = "07520101000"  # T10N R2E SEC 20 TR 20A, HLB Parcel 6-062
 SECTION_LINE_TRACTS = ["07513102000", "07520102000", "07520101000"]  # tracts 19B, 20B, 20A
@@ -39,10 +42,10 @@ def fetch(url: str, path: Path) -> Path:
     return path
 
 
-def arcgis_lines(service: str, out_fields: str) -> list[dict]:
-    xmin, ymin, xmax, ymax = CONTEXT_BBOX
+def arcgis_lines(service: str, out_fields: str, bbox=None, where: str = "1=1", cache_name: str | None = None) -> list[dict]:
+    xmin, ymin, xmax, ymax = bbox or CONTEXT_BBOX
     params = {
-        "where": "1=1",
+        "where": where,
         "geometry": json.dumps({"xmin": xmin, "ymin": ymin, "xmax": xmax, "ymax": ymax, "spatialReference": {"wkid": 4326}}),
         "geometryType": "esriGeometryEnvelope",
         "inSR": "4326",
@@ -52,7 +55,7 @@ def arcgis_lines(service: str, out_fields: str) -> list[dict]:
         "f": "geojson",
     }
     url = f"{ARCGIS}/{service}/FeatureServer/0/query?" + urllib.parse.urlencode(params)
-    path = fetch(url, CACHE / f"{service}.geojson")
+    path = fetch(url, CACHE / f"{cache_name or service}.geojson")
     return json.loads(path.read_text())["features"]
 
 
@@ -150,6 +153,19 @@ def main() -> None:
     for part in street_coords("Seward Hwy"):
         infra.append(line(part, layer="infra", kind="transmission",
                           name="Transmission line from Anchorage to Girdwood and Whittier (approximate route along Seward Hwy)"))
+    # Continuing southeast along the Seward Hwy toward Whittier, as far as the Twentymile River.
+    for f in arcgis_lines("Streets_Hosted", "Street_Label", bbox=TWENTYMILE_BBOX,
+                          where="Street_Label LIKE 'Seward Hwy%' OR Street_Label LIKE 'SEWARD HWY%'",
+                          cache_name="Streets_SewardHwy_Twentymile"):
+        g = f["geometry"]
+        parts = [g["coordinates"]] if g["type"] == "LineString" else g["coordinates"]
+        for c in parts:
+            # Skip the part already drawn through Girdwood and the highway south of the river crossing.
+            if min(x for x, _ in c) > -149.15 and max(y for _, y in c) > TWENTYMILE_BREAK[1] - 0.001:
+                infra.append(line(c, layer="infra", kind="transmission",
+                                  name="Transmission line toward Whittier (approximate route along Seward Hwy)"))
+    infra.append(point(*TWENTYMILE_BREAK, layer="infra", kind="break",
+                       name="August 2026: the line to Whittier broke under the Twentymile River"))
     # The transmission line reaches the regulator on Ruane Rd; drawn here up the Alyeska Hwy from the Seward Hwy (approximate).
     for part in street_coords("Alyeska Hwy", keep=lambda c: max(p[1] for p in c) <= ruane_west[1] + 0.0003):
         infra.append(line(part, layer="infra", kind="transmission",
