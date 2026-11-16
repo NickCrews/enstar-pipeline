@@ -5,3 +5,4 @@ index.html
 _to_delete/
 .cache/
 __pycache__/
+.vscode/
