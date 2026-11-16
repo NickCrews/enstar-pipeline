@@ -4,3 +4,4 @@ dist/
 index.html
 _to_delete/
 .cache/
+__pycache__/
