@@ -29,15 +29,15 @@ const VIEWS = {
     labels: [["street:Ruane Rd", "Ruane Rd (washed out Oct 2021)", "bottom"], ["regulator", "Regulator station", "top"]] },
   sle: { title: "The state section-line easement (100 ft wide)", hl: ["sle", "proposed"], frame: ["sle"],
     labels: [["sle", "Section-line easement, 100 ft wide (since 1972)", "top"]] },
-  route: { title: "The 2023 route: Ruane Rd to Virgin Creek Rd", hl: ["proposed", "sle", "tie"], frame: ["proposed"],
+  route: { title: "Enstar's route: Ruane Rd to Virgin Creek Rd", hl: ["proposed", "sle", "tie"], frame: ["proposed"],
     labels: [["bore", "Drilled under Glacier Creek", "top"], ["trench", "Trenched, 20-ft clearing", "top"], ["tie:west", "Tie-in to 6-inch main", "bottom"], ["tie:east", "Tie-in to 2-inch main", "bottom"]] },
   glacier: { title: "Drilled under Glacier Creek (~1,500 ft)", hl: ["bore", "stream:Glacier Creek", "tie"], frame: ["bore"], pad: 0.4,
     labels: [["bore", "~1,500 ft bore, 10+ ft under the streambed", "top"], ["stream:Glacier Creek", "Glacier Creek"], ["tie:west", "End of Ruane Rd", "bottom"]] },
-  trench: { title: "Trenched and cleared (~3,350 ft × 20 ft)", hl: ["trench", "sle"], frame: ["trench"],
-    labels: [["trench", "3,350 ft × 20 ft cleared", "top"], ["tie:east", "End of Virgin Creek Rd", "bottom"]] },
-  hlb: { title: "HLB Parcel 6-062 (Tract 20-A): the Res. 2026-11 easement", hl: ["hlb_6_062", "proposed", "sle", "tie"], frame: ["hlb_6_062"],
-    labels: [["hlb_6_062", "HLB Parcel 6-062 (Tract 20-A)"], ["tie:east", "Virgin Creek Rd", "right"], ["sle", "Section-line easement", "top"]] },
-  neighbors: { title: "The east end: Virgin Creek Rd and Timberline Dr", hl: ["private", "tie", "trench", "street:Virgin Creek Rd", "street:Timberline Dr"], frame: ["neighbors"],
+  trench: { title: "Trenched and cleared (~3,350 ft × 20 ft)", hl: ["trench", "hlb_easement", "sle"], frame: ["trench", "hlb_easement"],
+    labels: [["trench", "Trenched, 20-ft cleared strip", "top"], ["tie:east", "End of Virgin Creek Rd", "bottom"]] },
+  hlb: { title: "Res. 2026-11: the line's east end, angled across HLB Parcel 6-062", hl: ["hlb_6_062", "hlb_easement", "tce", "replaced", "trench", "tie:east"], frame: ["hlb_easement", "replaced", "tce"], pad: 0.6,
+    labels: [["hlb_easement", "Res. 2026-11 easement (HLB Parcel 6-062)", "bottom"], ["replaced", "2023 alignment it replaces", "top"], ["tie:east", "Virgin Creek Rd", "right"]] },
+  neighbors: { title: "The east end: Virgin Creek Rd and Timberline Dr", hl: ["private", "tie", "trench", "hlb_easement", "tce", "street:Virgin Creek Rd", "street:Timberline Dr"], frame: ["neighbors"],
     labels: [["street:Virgin Creek Rd", "Virgin Creek Rd", "bottom"], ["street:Timberline Dr", "Timberline Dr", "right"], ["tie:east", "Tie-in", "left"]] },
   traffic: { title: "Construction access: Ruane Rd (west) and Virgin Creek Rd (east)", hl: ["street:Ruane Rd", "street:Virgin Creek Rd", "street:Timberline Dr", "proposed"], frame: ["proposed", "street:Virgin Creek Rd"],
     labels: [["street:Ruane Rd", "West access: Ruane Rd", "bottom"], ["street:Virgin Creek Rd", "East access: Virgin Creek Rd", "bottom"]] },
@@ -80,8 +80,11 @@ function baseStyle(f, on) {
       return {};
     case "proposed":
       if (p.kind === "bore") return { color: COLORS.proposed, weight: on ? 6 : 3, dashArray: "3 7", opacity: on ? 1 : 0.5 };
-      if (p.kind === "trench") return { color: COLORS.proposed, weight: on ? 6 : 3, opacity: on ? 1 : 0.5 };
+      if (p.kind === "trench" || p.kind === "hlb_easement") return { color: COLORS.proposed, weight: on ? 6 : 3, opacity: on ? 1 : 0.5 };
+      if (p.kind === "tce") return { color: COLORS.proposed, weight: 1, fillColor: COLORS.proposed, fillOpacity: on ? 0.5 : 0.2, opacity: on ? 1 : 0.5 };
       return {};
+    case "replaced":
+      return { color: on ? "#f1f3f5" : "#868e96", weight: on ? 4 : 2, dashArray: "4 6", opacity: on ? 1 : 0.5 };
   }
   return {};
 }

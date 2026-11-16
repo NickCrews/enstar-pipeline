@@ -200,16 +200,34 @@ def main() -> None:
         [west_lon, sl - half], [east_lon, sl - half], [east_lon, sl + half], [west_lon, sl + half], [west_lon, sl - half]]]},
         "properties": {"layer": "sle", "name": "State section-line easement, 100 ft wide (50 ft each side)"}}
 
-    # 2023 proposed line: 4,850 ft from the end of Ruane Rd east along the section line to Virgin Creek Rd.
-    # First ~1,500 ft drilled under Glacier Creek and its wetlands, then 3,350 ft trenched in a 20-ft cleared strip.
+    # Enstar's gas line (DNR ADL 234206): from the end of Ruane Rd east along the section line to Virgin Creek Rd.
+    # About 1,500 ft is drilled under Glacier Creek and its wetlands; the rest is trenched in a 20-ft cleared strip.
     m_per_deg_lon = 111_320 * 0.48572  # cos(60.95°)
+    ft = 0.3048
+
+    def offset(pt, east_ft, north_ft):
+        return (pt[0] + east_ft * ft / m_per_deg_lon, pt[1] + north_ft * ft / 111_320)
+
     bore_end = ruane_east[0] + 457 / m_per_deg_lon
-    vcr_end = (-149.13089, 60.94882)
+    # Res. 2026-11 easement, from its legal description (Exhibit A, GBOS Nov 16, 2026 packet): it begins on the
+    # section-line easement 977.34 ft west of and 50 ft south of Tract 20-A's northernmost NE corner, and runs
+    # 1,003 ft S76°55'E to the west end of Virgin Creek Rd, 272.82 ft south of that corner.
+    ne_20a = (-149.130897, 60.949508)
+    hlb_start = offset(ne_20a, -977.34, -50)
+    vcr_end = offset(ne_20a, 0, -272.82)
+    tce_nw = offset(ne_20a, -65, -217.82)
+    tce = [tce_nw, offset(tce_nw, 65, 0), offset(tce_nw, 65, -75), offset(tce_nw, 0, -75), tce_nw]
     proposed = [
         line([list(ruane_east), [bore_end, sl]], layer="proposed", kind="bore",
-             name="2023 plan: ~1,500 ft drilled under Glacier Creek and wetlands (approximate)"),
-        line([[bore_end, sl], [vcr_end[0], sl], list(vcr_end)], layer="proposed", kind="trench",
-             name="2023 plan: ~3,350 ft trenched in a 20-ft cleared strip (approximate)"),
+             name="Drilled ~1,500 ft under Glacier Creek and wetlands (approximate)"),
+        line([[bore_end, sl], list(hlb_start)], layer="proposed", kind="trench",
+             name="Trenched in a 20-ft cleared strip in the section-line easement (approximate)"),
+        line([list(hlb_start), list(vcr_end)], layer="proposed", kind="hlb_easement",
+             name="Res. 2026-11: 20-ft gas easement angled across HLB Parcel 6-062 to Virgin Creek Rd (from its legal description)"),
+        line([[hlb_start[0], sl], [ne_20a[0], sl], list(vcr_end)], layer="replaced", kind="replaced",
+             name="2023 alignment of the east end, along the section line, which the HLB easement would replace (approximate)"),
+        {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[list(c) for c in tce]]},
+         "properties": {"layer": "proposed", "kind": "tce", "name": "Res. 2026-11: 65 × 75 ft temporary construction easement"}},
         point(*ruane_east, layer="proposed", kind="tie", name="Tie-in to the 6-inch main at the end of Ruane Rd"),
         point(*vcr_end, layer="proposed", kind="tie", name="Tie-in to a 2-inch main at the end of Virgin Creek Rd"),
     ]

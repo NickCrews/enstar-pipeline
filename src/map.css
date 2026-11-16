@@ -41,6 +41,7 @@ section { scroll-margin-top: calc(42vh + 50px); }
 .term.transmission { text-decoration-color: #e8590c; text-decoration-style: dashed; }
 .term.proposed { text-decoration-color: #2b8a3e; }
 .term.sle { text-decoration-color: #c2255c; }
+.term.replaced { text-decoration-color: #868e96; }
 .term.hlb { text-decoration-color: #7048e8; }
 .term.place { text-decoration-color: #868e96; }
 .leaflet-tooltip.parcel-tip { font-size: 12px; font-weight: 600; padding: 3px 7px; }
