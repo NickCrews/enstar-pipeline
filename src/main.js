@@ -19,8 +19,8 @@ const COLORS = {
 const VIEWS = {
   system: { title: "Today: one feed into the valley", hl: ["transmission", "main6", "regulator", "proposed"], frame: ["main6", "regulator", "proposed"],
     labels: [["main6", "Existing 6-inch main: the only feed"], ["regulator", "Regulator station", "top"], ["proposed", "Proposed second line", "bottom"]] },
-  transmission: { title: "The line from Anchorage also feeds Whittier", hl: ["transmission", "main6", "regulator"], frame: ["transmission"],
-    labels: [["transmission", "One line: Anchorage → Girdwood → Whittier", "top"], ["regulator", "Girdwood regulator", "right"]] },
+  transmission: { title: "The line from Anchorage also feeds Whittier", hl: ["transmission", "main6", "regulator", "break"], frame: ["transmission", "break"],
+    labels: [["transmission", "One line: Anchorage → Girdwood → Whittier", "top"], ["regulator", "Girdwood regulator", "right"], ["break", "Broke under the Twentymile River (Aug 2026)", "left"]] },
   main: { title: "The existing 6-inch main along the Alyeska Highway", hl: ["main6", "regulator", "strike"], frame: ["main6"],
     labels: [["main6", "6-inch main up the Alyeska Hwy"], ["strike", "2016 strike", "left"], ["regulator", "Regulator station", "bottom"]] },
   strike: { title: "2016: contractor hits the main near 1127 Alyeska Hwy", hl: ["main6", "strike"], frame: ["strike"], zoom: 16,
@@ -91,6 +91,7 @@ function pointLayer(f, latlng) {
   const opts = {
     regulator: { radius: 8, color: "#fff", weight: 2, fillColor: COLORS.main6, fillOpacity: 1 },
     strike: { radius: 9, color: "#fff", weight: 2, fillColor: "#e03131", fillOpacity: 1 },
+    break: { radius: 9, color: "#fff", weight: 2, fillColor: "#e03131", fillOpacity: 1 },
     tie: { radius: 6, color: "#fff", weight: 2, fillColor: COLORS.proposed, fillOpacity: 1 },
   }[k] || { radius: 5 };
   return L.circleMarker(latlng, opts);
