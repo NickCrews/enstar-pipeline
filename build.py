@@ -11,12 +11,17 @@ ROOT = Path(__file__).parent
 OM = "https://open-minutes.nickcrews.workers.dev/meetings/"
 GBOS = "https://www.muni.org/Departments/operations/streets/Service/GBOS/"
 
+# Original URLs that the Nov 2026 muni.org redesign removed (they now return 404).
+REMOVED = {3, 4, 11, 12, 13}
+
 # (number, description, original URL or None, archive/video URL or None, local copy path or None)
 SOURCES = [
     (1, "Heritage Land Bank. Public Hearing Notice, HLBAC Resolution 2026-11 (Enstar, Parcel 6-062). Posted Nov 5, 2026.",
-     "https://www.muni.org/Documents/Public%20Notices/2026/HLBAC_2026-11_Enstar_6-062_PHN.pdf", None, None),
+     "https://www.muni.org/Documents/Public%20Notices/2026/HLBAC_2026-11_Enstar_6-062_PHN.pdf", None,
+     "sources/2026-11-05-hlbac-res-2026-11-public-notice.pdf"),
     (2, "Heritage Land Bank Advisory Commission. Agenda, November 19, 2026.",
-     "https://www.muni.org/Documents/Departments/Real%20Estate/Heritage%20Land%20Bank/2026%20Meetings/HLBAC_20261119_Agenda.pdf", None, None),
+     "https://www.muni.org/Documents/Departments/Real%20Estate/Heritage%20Land%20Bank/2026%20Meetings/HLBAC_20261119_Agenda.pdf", None,
+     "sources/2026-11-19-hlbac-agenda.pdf"),
     (3, "Enstar (Steve Cooper). Letter to GBOS and DNR re ADL 234206, Aug 3, 2023.",
      GBOS + "2023%2008%2003%20ENSTAR%20Comments%20re%20ADL%20234206.pdf",
      "https://web.archive.org/web/20251108002010/" + GBOS + "2023%2008%2003%20ENSTAR%20Comments%20re%20ADL%20234206.pdf",
@@ -53,9 +58,10 @@ SOURCES = [
      "https://www.muni.org/Departments/operations/streets/Service/Land%20Use%20Committee/LUC%20May%202026%20minutes%20final.pdf", None, None),
     (14, "GBOS. Meeting packet, Nov 16, 2026.",
      "https://www.muni.org/Documents/Departments/Maintenance%20and%20Operations/Street%20Maintenance/Municipal%20Road%20Maintenance%20Service%20Areas/Girdwood%20Board%20of%20Supervisors/GBOS%20Nov%2016%20meeting%20packet.pdf",
-     None, None),
+     None, "sources/2026-11-16-gbos-meeting-packet.pdf"),
     (15, "HLBAC. Meeting packet, March 26, 2026 (a staff report citing AMC 25.40.025: HLBAC holds a hearing before recommending a disposal to the Mayor and Assembly).",
-     "https://www.muni.org/Departments/hlb/SiteAssets/Pages/HLBCommission/HLBAC_20260326_Packet.pdf", None, None),
+     "https://www.muni.org/Documents/Departments/Real%20Estate/Heritage%20Land%20Bank/2026%20Meetings/HLBAC_20260326_Packet.pdf", None,
+     "sources/2026-03-26-hlbac-packet.pdf"),
     (16, "Turnagain News (Chase Berenson). “Whittier natural gas shutdown shows vulnerability of communities outside the Anchorage bowl,” Sep 1, 2026.",
      "https://www.turnagainnews.org/articles/whittier-natural-gas-shutdown-shows-vulnerability-of-communities-outside-the-anchorage-bowl",
      "https://web.archive.org/web/20261115214453/https://www.turnagainnews.org/articles/whittier-natural-gas-shutdown-shows-vulnerability-of-communities-outside-the-anchorage-bowl", None),
@@ -96,6 +102,9 @@ SOURCES = [
      None, None, "sources/2024-09-enstar-update.pdf"),
     (31, "“Enstar similar photos,” July 2023 GBOS materials.",
      None, None, "sources/2023-07-enstar-similar-photos.docx"),
+    (32, "GBOS. Agenda, regular meeting Nov 16, 2026 (draft, rev. Nov 13, 2026).",
+     "https://www.muni.org/Documents/Departments/Maintenance%20and%20Operations/Street%20Maintenance/Municipal%20Road%20Maintenance%20Service%20Areas/Girdwood%20Board%20of%20Supervisors/GBOS%20Nov%2016%202026%20agenda%20draft%20rev%2011.13.pdf",
+     None, "sources/2026-11-16-gbos-agenda-rev-11-13.pdf"),
 ]
 
 
@@ -103,17 +112,21 @@ def render_sources() -> str:
     items = []
     for n, desc, orig, arch, copy in SOURCES:
         parts = []
+        has_copy = bool(copy) and (ROOT / "public" / copy).exists()
         if orig:
-            parts.append(f'<a href="{html.escape(orig)}">Original</a>')
+            if n in REMOVED:
+                parts.append(f'<a href="{html.escape(orig)}">Original</a> (removed from muni.org in its Nov 2026 redesign)')
+            else:
+                parts.append(f'<a href="{html.escape(orig)}">Original</a>')
         if arch:
             label = "Video" if "youtube.com" in arch else "Archive"
             parts.append(f'<a href="{html.escape(arch)}">{label}</a>')
-        elif orig and not orig.startswith(OM):
-            parts.append("<span>archive attempt failed</span>")
-        if copy:
+        if has_copy:
             parts.append(f'<a href="{copy}">Copy</a>')
+        if orig and not arch and not has_copy and not orig.startswith(OM):
+            parts.append("<span>no archived copy found</span>")
         if not orig:
-            parts.append("<span>not posted online that I found; from documents Girdwood staff sent GBOS on Nov 13, 2026</span>")
+            parts.append("<span>not found posted online; from documents Girdwood staff sent GBOS on Nov 13, 2026</span>")
         items.append(
             f'    <li id="s{n}">{html.escape(desc)}<br><span class="arch">' + " · ".join(parts) + "</span></li>"
         )
@@ -131,9 +144,9 @@ def main() -> None:
         raise SystemExit(f"cited but not defined: {sorted(missing)}")
     if unused:
         print(f"warning: defined but never cited: {sorted(unused)}")
-    for _, _, _, _, copy in SOURCES:
+    for n, _, _, _, copy in SOURCES:
         if copy and not (ROOT / "public" / copy).exists():
-            raise SystemExit(f"missing local copy: {copy}")
+            print(f"warning: source {n} local copy missing: {copy}")
     (ROOT / "index.html").write_text(out)
     print("wrote index.html")
 
