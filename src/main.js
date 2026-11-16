@@ -322,3 +322,11 @@ async function init() {
 }
 
 init();
+
+// Links like #faq-hlb point at a collapsed FAQ entry; open it so the answer is visible.
+function openTargetDetails() {
+  const el = location.hash && document.getElementById(location.hash.slice(1));
+  if (el && el.tagName === "DETAILS") el.open = true;
+}
+window.addEventListener("hashchange", openTargetDetails);
+openTargetDetails();
