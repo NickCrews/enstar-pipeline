@@ -105,6 +105,9 @@ SOURCES = [
     (32, "GBOS. Agenda, regular meeting Nov 16, 2026 (draft, rev. Nov 13, 2026).",
      "https://www.muni.org/Documents/Departments/Maintenance%20and%20Operations/Street%20Maintenance/Municipal%20Road%20Maintenance%20Service%20Areas/Girdwood%20Board%20of%20Supervisors/GBOS%20Nov%2016%202026%20agenda%20draft%20rev%2011.13.pdf",
      None, "sources/2026-11-16-gbos-agenda-rev-11-13.pdf"),
+    (33, "Alaska DNR, Land Administration System. Case File Abstract, ADL 234206 (case actions through the June 20, 2025 approval), as of Nov 17, 2026.",
+     "https://dnr.alaska.gov/projects/las/#filetype/ADL/filenumber/234206/landflag/y/searchtype/casefile/reporttype/abstract",
+     None, "sources/2026-11-17-dnr-case-abstract-adl-234206.pdf"),
 ]
 
 
